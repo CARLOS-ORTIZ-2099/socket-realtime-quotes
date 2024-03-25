@@ -1,0 +1,78 @@
+<html> 
+<head>
+	<title> Real Time Quotes | Nodejsera </title>
+	
+	<link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Josefin+Slab" rel="stylesheet">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+	
+	<style>	
+		.font{
+			font-family: 'Josefin Slab', serif;
+			text-align:center;
+			font-size: 40px;
+			font-weight:bold;
+		}
+		blockquote{
+			font-family: 'Josefin Sans', sans-serif;
+			background:#ccccff;
+			font-size: 30px;
+			font-weight: normal;
+			border-left: 4px solid #4db8ff;
+		}	
+	</style>
+	
+  
+</head>
+
+<body> 
+
+		<div class="container"> 
+			<div class="col-md-2">
+			
+			</div>
+
+			<div class="col-md-8">	
+			
+				<div class="font"> Real Time Quotes  </div> 
+				<hr>
+				
+				<div class="quotes" id="quotes"> 
+					<blockquote>
+						 have a great day , have a great life 
+					</blockquote>  
+					
+				</div> 
+			</div>
+
+			<div class="col-md-2">
+	
+			</div>
+
+		</div> 
+
+    <script src="/socket.io/socket.io.js"></script>    
+
+	<script>
+
+
+        // js pure
+
+		const quotes = document.getElementById('quotes')
+			var socket = io.connect('http://localhost:3000');
+	
+            // definiendo un evento next con el parametro que se le mande desde el archivo server.js
+			socket.on('next' , (data) => {
+              // inpresion en el browser  
+			  console.log(`resultado en index.html `); 
+			  console.log(data); 
+			  const blockquote = document.createElement('blockquote')
+			  blockquote.innerText = data.data.quote
+			  quotes.appendChild(blockquote)
+		  	})
+
+	</script>
+
+</body> 
+</html> 
