@@ -60,7 +60,7 @@
         // js pure
 
 		const quotes = document.getElementById('quotes')
-			var socket = io.connect('http://localhost:3000');
+			var socket = io();
 	
             // definiendo un evento next con el parametro que se le mande desde el archivo server.js
 			socket.on('next' , (data) => {

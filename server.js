@@ -35,9 +35,14 @@ server.listen(3000,() => console.log('server in listening on port 3000'))
 // instanciando un objeto del tipo Server
 const io = new Server(server)
 
-// ejecuto el metodo connection de la instancia io, con este metodo escucho todos los sockets entrantes
+// ejecuto el metodo connection de la instancia io, con este metodo escucho todos los sockets entrantes o conecciones entrantes
+// el parametro socket representa la informacion de la conexion entre el cliente y el servidor
+// este parametro nos sirve para emitir y definir eventos para dicho socket , entre otros
+// el callback Se disparó tras una conexión del cliente.
 io.on('connection', (socket) => {
-    // apenas se establesca la connecion se emitira un evento welcome con un mensaje
+    
+  
+    // apenas se establesca la connexion se emitira un evento welcome con un mensaje
     // y se le pasa un argumento
     socket.emit('welcome', { data: 'welcome' });
   
@@ -47,6 +52,9 @@ io.on('connection', (socket) => {
             console.log(data)
             // enseguida emito otro evento next que se define en el archivo index.html
             // y se le pasa como argumento un objeto con los datos que vengan del parametro data que se envian desde el archivo admin.html
+            // la porpiedad socket permite acceder a todos los sockets conectados en ese momento, devuelve 
+            // informacion de todos los sockets conectados, aqui enviamos un mensaje a todos los sockets conectados
             io.sockets.emit( 'next' , { data : data } )
+            
     }) 
 });

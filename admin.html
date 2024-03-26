@@ -82,7 +82,7 @@
 	<script>
 		
 
-		const socket = io.connect('http://localhost:3000');
+		const socket = io();
         // definiendo el evento welcome que se emitira en el archivo server.js
         // mostramos tambien el parametro data que sera el valor que se le pase desde el archivo server.js
 	    socket.on('welcome', (data) => {
